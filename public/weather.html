@@ -1,39 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Component</title>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather Component</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-    <div id="root"></div>
+  <div id="root"></div>
 
-    <script type="text/babel">
-        function App() {
+  <script type="text/babel">
 
-            const WeatherComponent = (props) => {
+    function App() {
+      const WeatherComponent = (props) => {
+        const [count, setCount] = React.useState(0);
 
-                const [count, setCount] = React.useState(0);
-                React.useEffect(() => {
-                    setCount(1);
-                }, []);
-            
-                return (
-                    <h1 onClick={() => setCount(count + 1)}>
-                        The weather is {props.weather},
-                        and the counter show {count}
-                    </h1>
-                );  
-            };
-            return (<WeatherComponent weather="sunny" />);
+        React.useEffect(() => {
+          setCount(1);
+        }, []);
+
+     
+        const changeBackground = () => {
+          if (count % 2 === 0) {
+            document.body.style.backgroundColor = "red";
+          } else {
+            document.body.style.backgroundColor = "blue";
+          }
         };
 
-        const container = document.getElementById("root");
-        const root = ReactDOM.createRoot(container);
-        root.render(<App />);
-    </script>
+        const handleClick = () => {
+          const newCount = count + 1;
+          setCount(newCount);
+
+          if (newCount % 2 === 0) {
+            document.body.style.backgroundColor = "red";
+          } else {
+            document.body.style.backgroundColor = "blue";
+          }
+        };
+
+        return (
+          <>
+            <h1>
+              The weather is {props.weather}, and the counter shows {count}
+            </h1>
+            <button onClick={handleClick}>
+              Press me
+            </button>
+          </>
+        );
+      };
+
+      return <WeatherComponent weather="sunny" />;
+    }
+
+    const container = document.getElementById("root");
+    const root = ReactDOM.createRoot(container);
+    root.render(<App />);
+  </script>
 </body>
 </html>
