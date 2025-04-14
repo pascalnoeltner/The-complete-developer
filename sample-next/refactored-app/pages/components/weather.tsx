@@ -1,3 +1,4 @@
+import "@/app/globals.css";
 import type { NextPage } from "next";
 import React, { useState, useEffect} from "react";
 
