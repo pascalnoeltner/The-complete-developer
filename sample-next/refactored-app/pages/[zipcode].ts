@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type WheaterDetailType = {
+type WeatherDetailType = {
     zipcode: string;
     weather: string;
     temp?: number;
@@ -9,7 +9,7 @@ type WheaterDetailType = {
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
-): Promise<NextApiResponse<WheaterDetailType> | void> {
+): Promise<NextApiResponse<WeatherDetailType> | void> {
 
     return res.status(200).json({
         zipcode: req.query.zipcode,
